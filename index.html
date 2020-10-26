@@ -123,6 +123,7 @@
 
       xPos.innerHTML = x
       yPos.innerHTML = y
+      zPos.innerHTML = z
 
       // Do something awesome.
     }
@@ -143,6 +144,8 @@
         //   yPos.innerHTML = this.target.y
 
         // }, false);
+
+      window.addEventListener('deviceorientation', handleOrientation);
 
         function handleOrientation(event) {
         var absolute = event.absolute;
