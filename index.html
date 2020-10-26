@@ -23,7 +23,8 @@
     <div class="car"></div>
     <div class="">x: <span class="x-pos"></span></div>
     <div class="">y: <span class="y-pos"></span></div>
-    <button class="btn-help" >Request Permission</button>
+    <button class="btn-help" >Request Motion Permission</button>
+    <button class="btn-help2">Request Orientation Permission</button>
   </div>
 <script>
 
@@ -40,13 +41,28 @@
       })
   }
 
+   function permission2() {
+      window.DeviceOrientationEvent.requestPermission()
+        .then(response => {
+          if (response == 'granted') {
+            // permission granted
+            alert('premission granted')
+          } else {
+            // permission not granted
+            alert('premission not granted')
+          }
+        })
+    }
+
 
   this.isMobile = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
   var self = this;
   var btnHelp = document.getElementsByClassName('btn-help')[0]
+  var btnHelp2 = document.getElementsByClassName('btn-help2')[0]
 
   if(this.isMobile) {
       btnHelp.addEventListener('click', permission)
+    btnHelp2.addEventListener('click', permission2)
   }
 
 
@@ -56,10 +72,10 @@
   yPos.innerHTML = 'good by';
   //check for mobile and accerlerometer support
 
-  if (this.isMobile && window.DeviceOrientationEvent) {
+  if (this.isMobile && window.DeviceMotionEvent) {
 
     //wireup the event
-    window.addEventListener('deviceorientation', function (eventData) {
+    window.addEventListener('devicemotion', function (eventData) {
       //grab the accelerometer values
       this.target.x = eventData.gamma * 2; //exaggerate the effect
       this.target.y = eventData.beta * 3;
@@ -68,6 +84,21 @@
 
     }, false);
   }
+
+
+    if (this.isMobile && window.DeviceOrientationEvent) {
+
+        //wireup the event
+        window.addEventListener('deviceorientation', function (eventData) {
+          //grab the accelerometer values
+          this.target.x = eventData.gamma * 2; //exaggerate the effect
+          this.target.y = eventData.beta * 3;
+          xPos.innerHTML = this.target.x
+          yPos.innerHTML = this.target.y
+
+        }, false);
+      }
+
 
 </script>
 </body>
