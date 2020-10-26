@@ -23,17 +23,13 @@
     <div class="car"></div>
     <div class="">x: <span class="x-pos"></span></div>
     <div class="">y: <span class="y-pos"></span></div>
-
+    <button class="btn-help" >Request Permission</button>
   </div>
 <script>
 
-
-
-
-  this.isMobile = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
-  var self = this;
-  if(this.isMobile) {
-      window.DeviceMotionEvent.requestPermission()
+  function permission() {
+    alert('this')
+    window.DeviceMotionEvent.requestPermission()
       .then(response => {
         if (response == 'granted') {
           // permission granted
@@ -43,6 +39,15 @@
           alert('premission not granted')
         }
       })
+  }
+
+
+  this.isMobile = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
+  var self = this;
+  var btnHelp = document.getElementsByClassName('btn-help')[0]
+
+  if(this.isMobile) {
+      btnHelp.addEventListener('click', permission)
   }
 
 
