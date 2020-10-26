@@ -31,6 +31,11 @@
   xPos.innerHTML = 'hey there';
   yPos.innerHTML = 'good by';
   //check for mobile and accerlerometer support
+
+  this.isMobile = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
+  var self = this;
+
+  alert(this.isMobile)
   if (this.isMobile && window.DeviceOrientationEvent) {
 
     //wireup the event
