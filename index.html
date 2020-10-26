@@ -121,9 +121,9 @@
       var y = event.accelerationIncludingGravity.y;
       var z = event.accelerationIncludingGravity.z;
 
-      xPos.innerHTML = x
-      yPos.innerHTML = y
-      zPos.innerHTML = z
+      xPos.innerHTML = Math.floor(x)
+      yPos.innerHTML = Math.floor(y)
+      zPos.innerHTML = Math.floor(z)
 
       // Do something awesome.
     }
