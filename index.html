@@ -21,8 +21,22 @@
   <div class="container">
     <div class="parallaxBg"></div>
     <div class="car"></div>
-    <div class="">x: <span class="x-pos"></span></div>
-    <div class="">y: <span class="y-pos"></span></div>
+    <div>
+      <h3>Motion</h3>
+    <div class="">x: <span class="x-pos-motion"></span></div>
+    <div class="">y: <span class="y-pos-motion"></span></div>
+    <div class="">z: <span class="z-pos-motion"></span></div>
+
+    </div>
+
+    <div>
+      <h3>Orientation</h3>
+      <div class="">abs: <span class="abs-pos-orientation"></span></div>
+      <div class="">alpha: <span class="x-pos-orientation"></span></div>
+      <div class="">beta: <span class="y-pos-orientation"></span></div>
+      <div class="">gamma: <span class="z-pos-orientation"></span></div>
+
+    </div>
     <button class="btn-help" >Request Motion Permission</button>
     <button class="btn-help2">Request Orientation Permission</button>
   </div>
@@ -66,10 +80,24 @@
   }
 
 
-  var xPos = document.getElementsByClassName('x-pos')[0]
-  var yPos = document.getElementsByClassName('y-pos')[0]
+  var xPos = document.getElementsByClassName('x-pos-motion')[0]
+  var yPos = document.getElementsByClassName('y-pos-motion')[0]
+    var zPos = document.getElementsByClassName('z-pos-motion')[0]
   xPos.innerHTML = 'hey there';
   yPos.innerHTML = 'good by';
+  zPos.innerHTML = 'good by';
+
+
+
+
+  var absPosOrientation = document.getElementsByClassName('abs-pos-orientation')[0]
+  var xPosOrientation = document.getElementsByClassName('x-pos-orientation')[0]
+  var yPosOrientation = document.getElementsByClassName('y-pos-orientation')[0]
+  var zPosOrientation = document.getElementsByClassName('z-pos-orientation')[0]
+  absPosOrientation.innerHTML = 'hey there';
+  xPosOrientation.innerHTML = 'hey there';
+  yPosOrientation.innerHTML = 'good by';
+  zPosOrientation.innerHTML = 'good by';
   //check for mobile and accerlerometer support
 
   if (this.isMobile && window.DeviceMotionEvent) {
@@ -105,16 +133,29 @@
 
     if (this.isMobile && window.DeviceOrientationEvent) {
 
-        //wireup the event
-        window.addEventListener('deviceorientation', function (eventData) {
-          //grab the accelerometer values
-          this.target.x = eventData.gamma * 2; //exaggerate the effect
-          this.target.y = eventData.beta * 3;
-          //alert(this.target.x)
-          xPos.innerHTML = this.target.x
-          yPos.innerHTML = this.target.y
+        // //wireup the event
+        // window.addEventListener('deviceorientation', function (eventData) {
+        //   //grab the accelerometer values
+        //   this.target.x = eventData.gamma * 2; //exaggerate the effect
+        //   this.target.y = eventData.beta * 3;
+        //   //alert(this.target.x)
+        //   xPos.innerHTML = this.target.x
+        //   yPos.innerHTML = this.target.y
 
-        }, false);
+        // }, false);
+
+        function handleOrientation(event) {
+        var absolute = event.absolute;
+        var alpha = event.alpha;
+        var beta = event.beta;
+        var gamma = event.gamma;
+
+        // Do stuff with the new orientation data
+        absPosOrientation.innerHTML = absolute
+        xPosOrientation.innerHTML = alpha
+        yPosOrientation.innerHTML = beta
+        zPosOrientation.innerHTML = gamma
+      }
       }
 
 
