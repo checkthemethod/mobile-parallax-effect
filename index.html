@@ -27,7 +27,13 @@
   </div>
 <script>
 
-  window.DeviceMotionEvent.requestPermission()
+
+
+
+  this.isMobile = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
+  var self = this;
+  if(this.isMobile) {
+      window.DeviceMotionEvent.requestPermission()
       .then(response => {
         if (response == 'granted') {
           // permission granted
@@ -37,6 +43,8 @@
           alert('premission not granted')
         }
       })
+  }
+
 
   var xPos = document.getElementsByClassName('x-pos')[0]
   var yPos = document.getElementsByClassName('y-pos')[0]
@@ -44,10 +52,6 @@
   yPos.innerHTML = 'good by';
   //check for mobile and accerlerometer support
 
-  this.isMobile = navigator.userAgent.match(/(iPad|iPhone|iPod)/g) ? true : false;
-  var self = this;
-
-  alert(this.isMobile)
   if (this.isMobile && window.DeviceOrientationEvent) {
 
     //wireup the event
