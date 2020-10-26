@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mobile Parallax Effect</title>
+  <style>
+    html, body, .container {
+      width: 100%;
+      height: 100%;
+    }
+    .car {
+   background: url(car.png) top left no-repeat;
+
+    height: 540px;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <div class="parallaxBg"></div>
+    <div class="car"></div>
+    <div class="">x: <span class="x-pos"></span></div>
+    <div class="">y: <span class="y-pos"></span></div>
+
+  </div>
+<script>
+  var xPos = document.getElementsByClassName('x-pos')[0]
+  var yPos = document.getElementsByClassName('y-pos')[0]
+  xPos.innerHTML = 'hey there';
+  yPos.innerHTML = 'good by';
+  //check for mobile and accerlerometer support
+  if (this.isMobile && window.DeviceOrientationEvent) {
+
+    //wireup the event
+    window.addEventListener('deviceorientation', function (eventData) {
+
+      //grab the accelerometer values
+      this.target.x = eventData.gamma * 2; //exaggerate the effect
+      this.target.y = eventData.beta * 3;
+
+      xPos.innerHTML =  this.target.x
+      yPos.innerHTML = this.target.y
+
+    }, false);
+  }
+
+</script>
+</body>
+</html>
