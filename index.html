@@ -75,14 +75,31 @@
   if (this.isMobile && window.DeviceMotionEvent) {
 
     //wireup the event
-    window.addEventListener('devicemotion', function (eventData) {
-      //grab the accelerometer values
-      this.target.x = eventData.gamma * 2; //exaggerate the effect
-      this.target.y = eventData.beta * 3;
-      xPos.innerHTML =  this.target.x
-      yPos.innerHTML = this.target.y
+    // window.addEventListener('devicemotion', function (eventData) {
+    //   //grab the accelerometer values
+    //   this.target.x = eventData.gamma * 2; //exaggerate the effect
+    //   this.target.y = eventData.beta * 3;
+    //   xPos.innerHTML =  this.target.x
+    //   yPos.innerHTML = this.target.y
+    //   alert(this.target.x)
 
-    }, false);
+    // }, false);
+
+    window.addEventListener('devicemotion', handleMotionEvent);
+
+    function handleMotionEvent(event) {
+
+      var x = event.accelerationIncludingGravity.x;
+      var y = event.accelerationIncludingGravity.y;
+      var z = event.accelerationIncludingGravity.z;
+
+      xPos.innerHTML = x
+      yPos.innerHTML = y
+
+      // Do something awesome.
+    }
+
+
   }
 
 
@@ -93,6 +110,7 @@
           //grab the accelerometer values
           this.target.x = eventData.gamma * 2; //exaggerate the effect
           this.target.y = eventData.beta * 3;
+          //alert(this.target.x)
           xPos.innerHTML = this.target.x
           yPos.innerHTML = this.target.y
 
