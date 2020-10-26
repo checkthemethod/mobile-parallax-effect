@@ -40,11 +40,12 @@
 
     //wireup the event
     window.addEventListener('deviceorientation', function (eventData) {
-
+      alert(eventData)
       //grab the accelerometer values
       this.target.x = eventData.gamma * 2; //exaggerate the effect
       this.target.y = eventData.beta * 3;
-
+      alert('this target x: ' + this.target.x )
+      alert('this target y: ' + this.target.y)
       xPos.innerHTML =  this.target.x
       yPos.innerHTML = this.target.y
 
