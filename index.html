@@ -26,6 +26,16 @@
 
   </div>
 <script>
+
+  window.DeviceMotionEvent.requestPermission()
+      .then(response => {
+        if (response == 'granted') {
+          // permission granted
+        } else {
+          // permission not granted
+        }
+      })
+
   var xPos = document.getElementsByClassName('x-pos')[0]
   var yPos = document.getElementsByClassName('y-pos')[0]
   xPos.innerHTML = 'hey there';
